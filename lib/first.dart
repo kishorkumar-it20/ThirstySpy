@@ -39,7 +39,7 @@ class _FirstPageState extends State<FirstPage> {
 
   Future<List<DataItem>> fetchDataFromMongo() async {
     try {
-      final db = mongo.Db("mongodb+srv://rvrohith0801:1234567890@cluster0.crqhh2m.mongodb.net/Cluster0?retryWrites=true&w=majority  ");
+      final db = mongo.Db(" ");
       await db.open();
 
       final collection = db.collection('People');

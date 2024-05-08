@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:thirstspyfront/Dailybasis.dart';
+import 'package:thirstspyfront/Track_file.dart';
 
 void main()
 {
@@ -67,7 +68,7 @@ class HomePage extends StatelessWidget {
               width: 380,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const DailyBasis()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const Track()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFFECC1EC),

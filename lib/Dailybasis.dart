@@ -48,8 +48,9 @@ class _DailyBasisState extends State<DailyBasis> {
     return '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
   }
   Future<void> fetchData() async{
+    final response = await http.get(Uri.parse("API"));
     try{
-      final response = await http.get(Uri.parse("http://192.168.0.193:3000/peopledata"));
+
       if(response.statusCode == 200)
         {
           print("Response Success");
@@ -66,6 +67,8 @@ class _DailyBasisState extends State<DailyBasis> {
         throw Exception(const AssetImage("assets/no-data.png"));
       }
     }catch(error){
+      print("error occured");
+      print('Received status code: ${error}');
       const AssetImage("assets/no-data.png");
     }
   }
@@ -161,15 +164,15 @@ class _DailyBasisState extends State<DailyBasis> {
               children: getDataForSelectedDate(_selectedDate).map((item) {
                 return GestureDetector(
                   onTap: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => IndividualProfile(
-                    //       name: item.name,
-                    //       image: item.image,
-                    //     ),
-                    //   ),
-                    // );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => IndividualProfile(
+                          name: item.name,
+                          image: item.image,
+                        ),
+                      ),
+                    );
                   },
                   child: Container(
                     height: 80, // Set the height of each item as needed
@@ -248,7 +251,7 @@ class CustomAppBar extends StatelessWidget {
         child: const FlexibleSpaceBar(
           title: Text(
             'Track Daily Basis',
-            style: TextStyle(fontSize: 30, color: Colors.white, letterSpacing: 2),
+            style: TextStyle(fontSize: 24, color: Colors.white, letterSpacing: 2),
           ),
           centerTitle: true,
         ),
